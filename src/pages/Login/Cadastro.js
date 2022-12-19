@@ -20,19 +20,19 @@ export default function Cadastro(){
 
     const navigate = useNavigate()
 
+    const load = <ThreeDots 
+    height="80" 
+    width="80" 
+    radius="9"
+    color="white" 
+    ariaLabel="three-dots-loading"
+    wrapperStyle={{}}
+    wrapperClassName=""
+    visible={true}
+    />
+    
     if(carregando===true){
-        setBotao(
-            <ThreeDots 
-            height="80" 
-            width="80" 
-            radius="9"
-            color="white" 
-            ariaLabel="three-dots-loading"
-            wrapperStyle={{}}
-            wrapperClassName=""
-            visible={true}
-            />
-        )
+        setBotao(load)
     }
 
     function erro(e){
@@ -78,7 +78,10 @@ export default function Cadastro(){
             onChange={(e)=>setFoto(e.target.value)} required
             disabled={desabilitar && 'disabled'}/>
 
-            <button type='submit'>{botao}</button>
+            <button type='submit' disabled={desabilitar && 'disabled'}>
+                {botao}
+            </button>
+            
         </Form>
         <Link to={'/'}>
             <p>Já tem uma conta? Faça login!</p>

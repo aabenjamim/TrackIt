@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 
 export const Form = styled.form`
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -25,7 +24,7 @@ export const Form = styled.form`
         font-size: 20px;
     }
     button{
-        width: 326px;
+        width: 303px;
         height: 45px;
         font-family: 'Lexend Deca', sans-serif;
         background-color: #52B6FF;
@@ -37,17 +36,21 @@ export const Form = styled.form`
         display: flex;
         justify-content: center;
         align-items: center;
+        :disabled{
+            opacity: 0.7;
+        }
     }
 
 `
 
 export const Container = styled.div`
-    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 60px;
-
+    background-color: white;
     p{
         font-family: 'Lexend Deca';
         text-decoration: underline;
