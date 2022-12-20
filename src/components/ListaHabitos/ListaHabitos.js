@@ -76,8 +76,9 @@ export default function ListaHabitos(){
             <div>
                 <Posicao>
                     {dias.map((d)=>
-                    <Botao data-test="habit-day">
-                        {d.dia}
+                    <Botao data-test="habit-day" 
+                    fundo = {habito.days.includes(d.id)? '#CFCFCF' : '#FFFFFF'}
+                    cor = {habito.days.includes(d.id)? '#FFFFFF' : '#DBDBDB'}>                        {d.dia}
                     </Botao>)}
                 </Posicao>
             </div>

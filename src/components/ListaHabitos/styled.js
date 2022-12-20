@@ -40,7 +40,7 @@ export const Botao = styled.div`
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-    color: ${props => props.letra? props.letra : '#dbdbdb'};
+    color: ${props => props.cor};
 `
 export const Linha = styled.div`
     width: 100%;
