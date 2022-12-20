@@ -55,6 +55,7 @@ export default function AdicionarHabito(){
     }
 
     function criar(event){
+
         event.preventDefault()
 
         setDesabilitar(true)
@@ -72,7 +73,10 @@ export default function AdicionarHabito(){
         }, config)
 
         requisicao.then((res)=>deuCerto(res))
-        requisicao.catch((e)=>console.log(e.response.data.message))
+        requisicao.catch((e)=>{
+            alert(e.response.data.message)
+            setDesabilitar(false)
+        })
     }
 
     return(
@@ -80,20 +84,25 @@ export default function AdicionarHabito(){
         <Container>
             <div>
                 <Input placeholder="nome do hábito" type='text' value={habito} 
-                onChange={(e)=>setHabito(e.target.value)} required data-test="habit-name-input"/>
+                onChange={(e)=>setHabito(e.target.value)} data-test="habit-name-input"
+                disabled={desabilitar && 'disabled'} />
                 <Gap>
                     {dias.map((d)=>
                     <Botao type='button' data-test="habit-day"
                     fundo={listaDias.includes(d.id)? '#CFCFCF' : '#FFFFFF'}
                     letra={listaDias.includes(d.id)? '#FFFFFF' : '#DBDBDB'}
-                    onClick={()=> marcar(d)}>
+                    onClick={()=> marcar(d)}
+                    disabled={desabilitar && 'disabled'} >
                         {d.dia}
                     </Botao>)}
                 </Gap>
             </div>
             <Baixo>
                 <Cancelar type='button' data-test="habit-create-cancel-btn"
-                onClick={cancela}>Cancelar</Cancelar>
+                onClick={cancela}
+                disabled={desabilitar && 'disabled'}>
+                    Cancelar
+                </Cancelar>
                 <Salvar data-test="habit-create-save-btn"
                 type='submit' disabled={desabilitar && 'disabled'}>
                     Salvar

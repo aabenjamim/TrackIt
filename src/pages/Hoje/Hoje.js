@@ -92,7 +92,7 @@ export default function Hoje(){
     return(
         <>
             <Topo  data-test="header"/>
-                <Dia>
+                <Dia data-test="today today-counter">
                     <h1 data-test="today">{nomeDia}, {data}/{mes}</h1>
                     {praticados.length===0 ?
                     <P data-test="today-counter" >Ainda não há atiividades concluídas</P> :
