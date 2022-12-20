@@ -76,14 +76,14 @@ export default function AdicionarHabito(){
     }
 
     return(
-        <form onSubmit={criar}>
+        <form onSubmit={criar} data-test="habit-create-container">
         <Container>
             <div>
                 <Input placeholder="nome do hábito" type='text' value={habito} 
-                onChange={(e)=>setHabito(e.target.value)} required/>
+                onChange={(e)=>setHabito(e.target.value)} required data-test="habit-name-input"/>
                 <Gap>
                     {dias.map((d)=>
-                    <Botao type='button'
+                    <Botao type='button' data-test="habit-day"
                     fundo={listaDias.includes(d.id)? '#CFCFCF' : '#FFFFFF'}
                     letra={listaDias.includes(d.id)? '#FFFFFF' : '#DBDBDB'}
                     onClick={()=> marcar(d)}>
@@ -92,9 +92,9 @@ export default function AdicionarHabito(){
                 </Gap>
             </div>
             <Baixo>
-                <Cancelar type='button'
+                <Cancelar type='button' data-test="habit-create-cancel-btn"
                 onClick={cancela}>Cancelar</Cancelar>
-                <Salvar
+                <Salvar data-test="habit-create-save-btn"
                 type='submit' disabled={desabilitar && 'disabled'}>
                     Salvar
                 </Salvar>

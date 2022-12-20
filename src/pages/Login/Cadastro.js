@@ -67,23 +67,23 @@ export default function Cadastro(){
         <Form onSubmit={cadastrar}>
             <input type='email' placeholder="email" value={email} 
             onChange={(e)=>setEmail(e.target.value)} required
-            disabled={desabilitar && 'disabled'}/>
+            disabled={desabilitar && 'disabled'} data-test="email-input"/>
             <input type='password' value={senha} placeholder="senha" 
             onChange={(e)=>setSenha(e.target.value)} required
-            disabled={desabilitar && 'disabled'}/>
+            disabled={desabilitar && 'disabled'} data-test="password-input"/>
             <input type='text' placeholder="nome" value={nome} 
             onChange={(e)=>setNome(e.target.value)} required
-            disabled={desabilitar && 'disabled'}/>
+            disabled={desabilitar && 'disabled'} data-test="user-name-input"/>
             <input type='url' value={foto} placeholder="foto" 
             onChange={(e)=>setFoto(e.target.value)} required
-            disabled={desabilitar && 'disabled'}/>
+            disabled={desabilitar && 'disabled'} data-test="user-image-input"/>
 
-            <button type='submit' disabled={desabilitar && 'disabled'}>
+            <button type='submit' disabled={desabilitar && 'disabled'} data-test="signup-btn" >
                 {botao}
             </button>
             
         </Form>
-        <Link to={'/'}>
+        <Link to={'/'} data-test="login-link">
             <p>Já tem uma conta? Faça login!</p>
         </Link>
     </Container>

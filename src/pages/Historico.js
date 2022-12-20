@@ -4,8 +4,8 @@ import Topo from "../components/Topo";
 export default function Historico(){
     return(
         <>
-            <Topo/>
-            <Menu/>
+            <Topo  data-test="header"/>
+            <Menu data-test="menu"/>
         </>
     )
 }

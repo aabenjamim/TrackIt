@@ -24,8 +24,6 @@ export default function AuthProvider({children}){
         if(h.data.length > 0){
             setMostra(<ListaHabitos/>)
         }
-
-        console.log('habitos', h.data)
     }
 
     return(

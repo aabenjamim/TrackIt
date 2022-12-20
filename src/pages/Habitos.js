@@ -30,11 +30,11 @@ export default function Habitos(){
 
     return(
         <div>
-            <Topo/>
+            <Topo  data-test="header"/>
             <MeusHabitos/>
             {novoHabito && <AdicionarHabito/>}
             {mostra}
-            <Menu/>
+            <Menu data-test="menu"/>
         </div>
     )
 }

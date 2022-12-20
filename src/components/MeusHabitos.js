@@ -13,7 +13,7 @@ export default function MeusHabitos(){
     return(
         <Container>
             <p>Meus Hábitos</p>
-            <button onClick={adicionar}>+</button>
+            <button onClick={adicionar} data-test="habit-create-btn">+</button>
         </Container>
     )
 }

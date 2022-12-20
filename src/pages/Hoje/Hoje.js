@@ -92,31 +92,37 @@ export default function Hoje(){
 
     return(
         <>
-            <Topo/>
+            <Topo  data-test="header"/>
                 <Dia>
-                    <h1>{nomeDia}, {data}/{mes}</h1>
+                    <h1 data-test="today">{nomeDia}, {data}/{mes}</h1>
                     {praticados.length===0 ?
-                    <P>Ainda não há atiividades concluídas</P> :
-                    <h2>{((praticados.length/listaHoje.length).toFixed(2))*100}% 
-                    dos hábitos concluídos</h2>}
+                    <P data-test="today-counter" >Ainda não há atiividades concluídas</P> :
+                    <h2 data-test="today-counter" >
+                        {((praticados.length/listaHoje.length).toFixed(2))*100}% 
+                        dos hábitos concluídos
+                    </h2>}
                 </Dia>
                 {listaHoje.map((lh)=>
-                    <Habito>
+                    <Habito data-test="today-habit-container">
                         <Texto>
-                            <H1>{lh.name}</H1>
+                            <H1 data-test="today-habit-name">{lh.name}</H1>
                             <div>
-                                <P>Sequência atual: {lh.currentSequence && lh.currentSequence} dias</P>
-                                <P>Seu recorde: {lh.highestSequence && lh.highestSequence} dias</P>
+                                <P data-test="today-habit-sequence">
+                                    Sequência atual: {lh.currentSequence && lh.currentSequence} dias
+                                </P>
+                                <P data-test="today-habit-record">
+                                    Seu recorde: {lh.highestSequence && lh.highestSequence} dias
+                                </P>
                             </div>
                         </Texto>
-                        <Check onClick={()=>concluir(lh.id)}
+                        <Check onClick={()=>concluir(lh.id)} data-test="today-habit-check-btn"
                         cor={praticados.includes(lh.id)? '#8FC549' : '#E7E7E7'}>
                             <ion-icon name="checkbox"></ion-icon>
                         </Check>
                     </Habito>
                 )
                 }
-            <Menu/>
+            <Menu data-test="menu"/>
         </>
     )
 }

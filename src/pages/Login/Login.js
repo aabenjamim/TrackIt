@@ -46,13 +46,15 @@ export default function Login(){
             <Form onSubmit={logar}>
                 <input type='email' placeholder="email" value={email} 
                 onChange={(e)=>setEmail(e.target.value)} required
-                disabled={desabilitar && 'disabled'}/>
+                disabled={desabilitar && 'disabled'} data-test="email-input"/>
                 <input type='password' value={senha} placeholder="senha" 
                 onChange={(e)=>setSenha(e.target.value)} required
-                disabled={desabilitar && 'disabled'}/>
-                <button disabled={desabilitar && 'disabled'}>Entrar</button>
+                disabled={desabilitar && 'disabled'} data-test="password-input"/>
+                <button disabled={desabilitar && 'disabled'}  data-test="login-btn">
+                    Entrar
+                </button>
             </Form>
-            <Link to={'/cadastro'}>
+            <Link to={'/cadastro'} data-test="signup-link">
                 <p>Não tem uma conta? Cadastre-se!</p>
             </Link>
         </Container>

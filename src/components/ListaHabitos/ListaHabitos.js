@@ -7,8 +7,6 @@ export default function ListaHabitos(){
 
     const {listar, listagem, token} = useContext(AuthContext)
 
-    console.log('listagem', listagem)
-
     const dias = [
     {dia: 'D', id: '7'}, 
     {dia: 'S', id: '1'}, 
@@ -24,8 +22,6 @@ export default function ListaHabitos(){
         cadaHabito.days
         )
     
-
-    console.log('botoes marcados', botoesMarcados)
 
     function excluido(){
 
@@ -71,15 +67,16 @@ export default function ListaHabitos(){
     return(
         <>
         {listagem.data.map((habito) =>
-            <Cartao>
-                <Linha>
-                    <Texto>{habito.name}</Texto>
-                    <ion-icon name="trash-outline" onClick={()=>excluir(habito.id)}></ion-icon>
-                </Linha>
+        <Cartao  data-test="habit-container">
+            <Linha>
+                <Texto data-test="habit-name">{habito.name}</Texto>
+                <ion-icon name="trash-outline" onClick={()=>excluir(habito.id)}
+                data-test="habit-delete-btn"></ion-icon>
+            </Linha>
             <div>
                 <Posicao>
                     {dias.map((d)=>
-                    <Botao>
+                    <Botao data-test="habit-day">
                         {d.dia}
                     </Botao>)}
                 </Posicao>
