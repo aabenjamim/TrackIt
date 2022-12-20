@@ -20,9 +20,19 @@ export default function AdicionarHabito(){
 
     const {setNovoHabito, listaDias, setListaDias, token} = useContext(AuthContext)
 
+    console.log('lista antes', listaDias)
+
     function marcar(d){
-        setListaDias([...listaDias, d.id])
+        if(listaDias.includes(d.id)){
+            const nova = listaDias.filter((dh)=>dh !== d.id)
+            setListaDias(nova)
+        } else{
+            setListaDias([...listaDias, d.id])
+        }
     }
+
+
+    console.log('nova', listaDias)
 
     function cancela(){
         setListaDias([])

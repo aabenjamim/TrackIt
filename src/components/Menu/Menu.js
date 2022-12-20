@@ -5,8 +5,12 @@ export default function Menu(){
     return(
         <Tudo>
             <Barra>
-                <p>Hábitos</p>
-                <p>Histórico</p>
+                <EstiloLink to="/habitos">
+                    <p>Hábitos</p>
+                </EstiloLink>
+                <EstiloLink to="/historico">
+                    <p>Histórico</p>
+                </EstiloLink>
                 <Circulo>
                     <EstiloLink to="/hoje">
                         <p>Hoje</p>
