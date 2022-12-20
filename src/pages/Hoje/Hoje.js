@@ -12,13 +12,13 @@ export default function Hoje(){
 
 
     const semana = [
-        {dia: 'Segunda', id: '1'},
-        {dia: 'Terça', id: '2'},
-        {dia: 'Quarta', id:'3'},
-        {dia: 'Quinta', id: '4'},
-        {dia: 'Sexta', id: '5'},
-        {dia: 'Sábado', id: '6'},
-        {dia: 'Domingo', id: '7'}
+        {dia: 'Segunda', id: 1},
+        {dia: 'Terça', id: 2},
+        {dia: 'Quarta', id:3},
+        {dia: 'Quinta', id: 4},
+        {dia: 'Sexta', id: 5},
+        {dia: 'Sábado', id: 6},
+        {dia: 'Domingo', id: 7}
     ]
    
     const dia = semana.findIndex(i => i.id == (dayjs().day()))
