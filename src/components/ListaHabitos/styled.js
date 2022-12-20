@@ -27,20 +27,20 @@ export const Posicao = styled.div`
     gap: 8px;
 `
 
-export const Botao = styled.button`
+export const Botao = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 30px;
     height: 30px;
-    background-color: white;
+    background-color: ${props => props.fundo};
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     font-family: 'Lexend Deca';
     font-weight: 400;
     font-size: 20px;
     line-height: 25px;
-    color: #DBDBDB;
+    color: ${props => props.letra? props.letra : '#dbdbdb'};
 `
 export const Linha = styled.div`
     width: 100%;

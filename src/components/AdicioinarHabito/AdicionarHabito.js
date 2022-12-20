@@ -1,8 +1,9 @@
-import { useContext, useState, useNavigate } from "react"
+import { useContext, useState, useNavigate, useEffect } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import axios from 'axios';
 import { Container, Input, Gap, Baixo, Cancelar, Salvar, Botao } from "./styled"
 import ListaHabitos from "../ListaHabitos/ListaHabitos";
+
 
 export default function AdicionarHabito(){
 
@@ -18,9 +19,7 @@ export default function AdicionarHabito(){
     const [desabilitar, setDesabilitar] = useState(false)
     const [habito, setHabito] = useState('')
 
-    const {setNovoHabito, listaDias, setListaDias, token} = useContext(AuthContext)
-
-    console.log('lista antes', listaDias)
+    const {setNovoHabito, listaDias, setListaDias, token, listar} = useContext(AuthContext)
 
     function marcar(d){
         if(listaDias.includes(d.id)){
@@ -31,18 +30,28 @@ export default function AdicionarHabito(){
         }
     }
 
-
-    console.log('nova', listaDias)
-
     function cancela(){
-        setListaDias([])
         setNovoHabito(false)
     }
 
     function deuCerto(res){
+
+        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`
+
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        const promise = axios.get(URL, config)
+
+        promise.then((h)=>listar(h))
+        promise.catch((erro)=>(console.log(erro.response.data)))
+    
+        setNovoHabito(false)
         setListaDias([])
         setHabito('')
-        setNovoHabito(false)
     }
 
     function criar(event){

@@ -5,7 +5,9 @@ import axios from "axios"
 
 export default function ListaHabitos(){
 
-    const {listaDias, listagem, token} = useContext(AuthContext)
+    const {listar, listagem, token} = useContext(AuthContext)
+
+    console.log('listagem', listagem)
 
     const dias = [
     {dia: 'D', id: '7'}, 
@@ -17,17 +19,53 @@ export default function ListaHabitos(){
     {dia: 'S', id: '6'}
     ]
 
-    function excluir(id){
-        const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+    const botoesMarcados = 
+        listagem.data.map((cadaHabito) =>
+        cadaHabito.days
+        )
+    
+
+    console.log('botoes marcados', botoesMarcados)
+
+    function excluido(){
+
+        const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`
 
         const config = {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }
-        const requisicao = axios.delete(url, config)
 
-        requisicao.then(alert('excluido com sucesso!'))
+        const promise = axios.get(URL, config)
+
+        promise.then((h)=>{
+            listar(h)
+            alert('excluido com sucesso!')
+        })
+        promise.catch((erro)=>(console.log(erro.response.data)))
+
+
+    }
+
+
+    function excluir(id){
+        const confirmacao = window.confirm('Deseja mesmo excluir este hábito?')
+        
+        if(confirmacao==true){
+            const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`
+
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            }
+            const requisicao = axios.delete(url, config)
+    
+            requisicao.then(excluido)
+        } else{
+            return
+        }
     }
         
     return(
@@ -41,9 +79,7 @@ export default function ListaHabitos(){
             <div>
                 <Posicao>
                     {dias.map((d)=>
-                    <Botao type='button'
-                    fundo={listaDias.includes(d.id)? '#CFCFCF' : '#FFFFFF'}
-                    letra={listaDias.includes(d.id)? '#FFFFFF' : '#DBDBDB'}>
+                    <Botao>
                         {d.dia}
                     </Botao>)}
                 </Posicao>

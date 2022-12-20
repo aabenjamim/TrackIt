@@ -21,6 +21,8 @@ export default function Hoje(){
     ]
 
     const [listaHoje, setListaHoje] = useState([])
+
+    const [praticados, setPraticados] = useState([])
     
     const dia = semana.findIndex(i => i.id == (dayjs().day()))
     const nomeDia = semana[dia].dia
@@ -29,6 +31,7 @@ export default function Hoje(){
     const mes = dayjs().month()
 
     useEffect(()=>{
+
         const url='https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today'
         const config = {
             headers: {
@@ -39,11 +42,58 @@ export default function Hoje(){
         const promise = axios.get(url, config)
 
         promise.then((res)=>{
-            console.log(res)
+            console.log(res.data)
             setListaHoje(res.data)
-            console.log(dayjs().month())
+            
         })
     },[])
+
+    if(praticados.length===0){
+        listaHoje.map((lh)=>
+        (lh.done && setPraticados([...praticados, lh.id])))
+    }
+
+
+    console.log('praticados', praticados)
+
+    function desmarcar(id){
+        const novo = praticados.filter((p)=> p !== id)
+        setPraticados(novo)
+    }
+
+    function concluir(id){
+
+        const config = {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        }
+
+        if(!praticados.includes(id)){
+            const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`
+    
+            const requisicao = axios.post(url,{}, config)
+    
+            requisicao.then(()=>{
+                setPraticados([...praticados, id])
+            })
+            requisicao.catch((e)=>console.log(e.response.data.message)) 
+        }
+
+        if(praticados.includes(id)){
+            const url = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/uncheck`
+            
+            const requisicao = axios.post(url, {}, config)
+
+            requisicao.then((res)=>{
+                console.log('excluido')
+                console.log(res)
+                desmarcar(id)
+            }
+            )
+            requisicao.catch((err)=>console.log(err.response.data))
+        }
+    }
 
     return(
         <>
@@ -61,7 +111,8 @@ export default function Hoje(){
                                 <p>Seu recorde: {lh.highestSequence} dias</p>
                             </div>
                         </Texto>
-                        <Check>
+                        <Check onClick={()=>concluir(lh.id)}
+                        cor={praticados.includes(lh.id)? '#8FC549' : '#E7E7E7'}>
                             <ion-icon name="checkbox"></ion-icon>
                         </Check>
                     </Habito>

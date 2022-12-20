@@ -70,7 +70,7 @@ export const Check = styled.div`
     ion-icon{
         width: 80px;
         height: 80px;        
-        color: #8FC549;
+        color: ${props => props.cor};
         margin: 0;
     }
 `

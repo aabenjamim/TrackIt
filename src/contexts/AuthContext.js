@@ -1,4 +1,6 @@
 import { createContext, useState } from "react";
+import Texto from "../components/Texto";
+import ListaHabitos from "../components/ListaHabitos/ListaHabitos";
 
 export const AuthContext = createContext()
 
@@ -11,10 +13,25 @@ export default function AuthProvider({children}){
     const [mostra, setMostra] = useState('')
     const [listagem, setListagem] = useState([])
 
+    function listar(h){
+        
+        setListagem(h)
+
+        if(h.data.length === 0){
+            setMostra(<Texto/>)
+        }
+
+        if(h.data.length > 0){
+            setMostra(<ListaHabitos/>)
+        }
+
+        console.log('habitos', h.data)
+    }
+
     return(
         <AuthContext.Provider value={{image, setImage, token, setToken, 
         novoHabito, setNovoHabito, listaDias, setListaDias, mostra, setMostra,
-        listagem, setListagem}}>
+        listagem, setListagem, listar}}>
             {children}
         </AuthContext.Provider>
     )

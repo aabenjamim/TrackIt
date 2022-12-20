@@ -10,22 +10,8 @@ import ListaHabitos from "../components/ListaHabitos/ListaHabitos"
 
 export default function Habitos(){
 
-    const {novoHabito, token, mostra, setMostra, setListagem} = useContext(AuthContext)
+    const {novoHabito, token, mostra, setMostra, setListagem, listar} = useContext(AuthContext)
 
-    function listar(h){
-        
-        setListagem(h)
-
-        if(h.data.length === 0){
-            setMostra(<Texto/>)
-        }
-
-        if(h.data.length > 0){
-            setMostra(<ListaHabitos/>)
-        }
-
-        console.log('habitos', h.data)
-    }
 
     useEffect(()=>{
         const URL = `https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits`
