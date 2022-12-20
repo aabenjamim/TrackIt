@@ -21,6 +21,8 @@ export default function Login(){
     function logar(event){
         event.preventDefault();
 
+        setDesabilitar(true)
+
         const url = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login'
         const requisicao = axios.post(url ,
             {
@@ -28,6 +30,8 @@ export default function Login(){
                 password: senha
             }
         );
+
+        setDesabilitar(false)
 
         requisicao.then((res)=>{
             setToken(res.data.token)

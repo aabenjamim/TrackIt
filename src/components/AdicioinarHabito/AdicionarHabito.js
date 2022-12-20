@@ -2,6 +2,7 @@ import { useContext, useState, useNavigate } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import axios from 'axios';
 import { Container, Input, Gap, Baixo, Cancelar, Salvar, Botao } from "./styled"
+import ListaHabitos from "../ListaHabitos";
 
 export default function AdicionarHabito(){
 
@@ -17,7 +18,7 @@ export default function AdicionarHabito(){
     const [desabilitar, setDesabilitar] = useState(false)
     const [habito, setHabito] = useState('')
 
-    const {novoHabito, setNovoHabito, listaDias, setListaDias, token} = useContext(AuthContext)
+    const {setNovoHabito, listaDias, setListaDias, token} = useContext(AuthContext)
 
     function marcar(d){
         setListaDias([...listaDias, d.id])
@@ -25,6 +26,12 @@ export default function AdicionarHabito(){
 
     function cancela(){
         setListaDias([])
+        setNovoHabito(false)
+    }
+
+    function deuCerto(res){
+        setListaDias([])
+        setHabito('')
         setNovoHabito(false)
     }
 
@@ -45,7 +52,7 @@ export default function AdicionarHabito(){
             days: listaDias
         }, config)
 
-        requisicao.then((res)=>console.log(res))
+        requisicao.then((res)=>deuCerto(res))
         requisicao.catch((e)=>console.log(e.response.data.message))
     }
 
