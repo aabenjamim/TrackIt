@@ -8,7 +8,8 @@ import {Dia, Habito, Texto, Check, H1, P} from './styled'
 
 export default function Hoje(){
 
-    const {token} = useContext(AuthContext)
+    const {token, listaHoje, setListaHoje, praticados, setPraticados} = useContext(AuthContext)
+
 
     const semana = [
         {dia: 'Segunda', id: '1'},
@@ -19,11 +20,7 @@ export default function Hoje(){
         {dia: 'Sábado', id: '6'},
         {dia: 'Domingo', id: '7'}
     ]
-
-    const [listaHoje, setListaHoje] = useState([])
-
-    const [praticados, setPraticados] = useState([])
-    
+   
     const dia = semana.findIndex(i => i.id == (dayjs().day()))
     const nomeDia = semana[dia].dia
     
@@ -90,6 +87,8 @@ export default function Hoje(){
         }
     }
 
+    const porcentagem = ((praticados.length/listaHoje.length).toFixed(2))*100
+
     return(
         <>
             <Topo  data-test="header"/>
@@ -98,8 +97,7 @@ export default function Hoje(){
                     {praticados.length===0 ?
                     <P data-test="today-counter" >Ainda não há atiividades concluídas</P> :
                     <h2 data-test="today-counter" >
-                        {((praticados.length/listaHoje.length).toFixed(2))*100}% 
-                        dos hábitos concluídos
+                        {porcentagem}% dos hábitos concluídos
                     </h2>}
                 </Dia>
                 {listaHoje.map((lh)=>

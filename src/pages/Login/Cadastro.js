@@ -1,7 +1,7 @@
 import logo from '../../assets/Group 8.svg'
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Form } from './styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ThreeDots } from "react-loader-spinner";
 
@@ -31,9 +31,9 @@ export default function Cadastro(){
     visible={true}
     />
     
-    if(carregando===true){
+    useEffect(()=>{if(carregando===true){
         setBotao(load)
-    }
+    }}, [])
 
     function erro(e){
         setDesabilitar(false)
@@ -55,10 +55,13 @@ export default function Cadastro(){
             password: senha
         })
 
-        setCarregando(false)
-        
+       
         requisicao.then(() => navigate("/"))
-        requisicao.catch((e)=>erro(e))
+        requisicao.catch((e)=>{
+            erro(e)
+            setCarregando(false)
+            setBotao('Cadastrar')
+        })
     }
 
     return(

@@ -13,6 +13,10 @@ export default function AuthProvider({children}){
     const [mostra, setMostra] = useState('')
     const [listagem, setListagem] = useState([])
 
+    const [listaHoje, setListaHoje] = useState([])
+
+    const [praticados, setPraticados] = useState([])
+
     function listar(h){
         
         setListagem(h)
@@ -29,7 +33,8 @@ export default function AuthProvider({children}){
     return(
         <AuthContext.Provider value={{image, setImage, token, setToken, 
         novoHabito, setNovoHabito, listaDias, setListaDias, mostra, setMostra,
-        listagem, setListagem, listar}}>
+        listagem, setListagem, listar, listaHoje, setListaHoje, 
+        praticados, setPraticados}}>
             {children}
         </AuthContext.Provider>
     )

@@ -1,7 +1,16 @@
 import { Link } from 'react-router-dom'
-import {Tudo, Barra, Circulo, EstiloLink} from './styled'
+import {Tudo, Barra, Cont, EstiloLink} from './styled'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 export default function Menu(){
+
+    const {praticados, listaHoje} = useContext(AuthContext)
+
+    const porcentagem = ((praticados.length/listaHoje.length).toFixed(2))*100
+
     return(
         <Tudo>
             <Barra>
@@ -11,11 +20,22 @@ export default function Menu(){
                 <EstiloLink to="/historico" data-test="history-link">
                     <p>Histórico</p>
                 </EstiloLink>
-                <Circulo>
+                <Cont>
                     <EstiloLink to="/hoje" data-test="today-link">
-                        <p>Hoje</p>
+                        <CircularProgressbar
+                            value={porcentagem}
+                            text={'Hoje'}
+                            background
+                            backgroundPadding={6}
+                            styles={buildStyles({
+                            backgroundColor: "#3e98c7",
+                            textColor: "#fff",
+                            pathColor: "#fff",
+                            trailColor: "transparent"
+                            })}
+                        />
                     </EstiloLink>
-                </Circulo>
+                </Cont>
             </Barra>
         </Tudo>
     )

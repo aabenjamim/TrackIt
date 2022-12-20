@@ -62,3 +62,32 @@ export const EstiloLink = styled(Link)`
         text-decoration: none;
     }
 `
+export const Cont = styled.div`
+    height: 91px;
+    width: 91px;
+    border-radius: 50%;
+    background-color: #52B6FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 46.5%;
+    z-index: 1;
+
+    p{
+        font-family: 'Lexend Deca';
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    @media (max-width: 614px){
+        position: absolute;
+        bottom: 10px;
+        left: 38%;
+    }
+
+`
