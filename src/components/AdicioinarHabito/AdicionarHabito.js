@@ -3,6 +3,8 @@ import { AuthContext } from "../../contexts/AuthContext"
 import axios from 'axios';
 import { Container, Input, Gap, Baixo, Cancelar, Salvar, Botao } from "./styled"
 import ListaHabitos from "../ListaHabitos/ListaHabitos";
+import { ThreeDots } from "react-loader-spinner";
+
 
 
 export default function AdicionarHabito(){
@@ -20,6 +22,17 @@ export default function AdicionarHabito(){
     const [habito, setHabito] = useState('')
 
     const {setNovoHabito, listaDias, setListaDias, token, listar} = useContext(AuthContext)
+
+    const load = <ThreeDots 
+    height="35" 
+    width="84" 
+    radius="9"
+    color="white" 
+    ariaLabel="three-dots-loading"
+    wrapperStyle={{}}
+    wrapperClassName=""
+    visible={true}
+    />
 
     function marcar(d){
         if(listaDias.includes(d.id)){
@@ -105,7 +118,7 @@ export default function AdicionarHabito(){
                 </Cancelar>
                 <Salvar data-test="habit-create-save-btn"
                 type='submit' disabled={desabilitar && 'disabled'}>
-                    Salvar
+                    {desabilitar ? load : 'Salvar'}
                 </Salvar>
             </Baixo>
         </Container>

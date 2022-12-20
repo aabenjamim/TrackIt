@@ -14,9 +14,6 @@ export default function Login(){
     const [email, setEmail] = useState('')
     const [senha, setSenha] = useState('')
 
-    const [carregando, setCarregando] = useState(false)
-    const [botao, setBotao] = useState('Entrar')
-
 
     const load = <ThreeDots 
     height="80" 
@@ -28,10 +25,6 @@ export default function Login(){
     wrapperClassName=""
     visible={true}
     />
-    
-    useEffect(()=>{if(carregando===true){
-        setBotao(load)
-    }}, [])
 
     const {setToken, setImage} = useContext(AuthContext)
 
@@ -41,7 +34,6 @@ export default function Login(){
         event.preventDefault();
 
         setDesabilitar(true)
-        setCarregando(true)
 
         const url = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login'
         const requisicao = axios.post(url ,
@@ -60,8 +52,6 @@ export default function Login(){
         requisicao.catch((err)=>{
             alert(err.response.data.message)
             setDesabilitar(false)
-            setCarregando(false)
-            setBotao('Entrar')
         })
     }
     
@@ -76,7 +66,7 @@ export default function Login(){
                 onChange={(e)=>setSenha(e.target.value)} required
                 disabled={desabilitar && 'disabled'} data-test="password-input"/>
                 <button disabled={desabilitar && 'disabled'}  data-test="login-btn">
-                    {botao}
+                    {desabilitar ? load : 'Entrar'}
                 </button>
             </Form>
             <Link to={'/cadastro'} data-test="signup-link">

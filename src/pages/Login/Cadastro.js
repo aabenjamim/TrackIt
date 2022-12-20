@@ -1,7 +1,7 @@
 import logo from '../../assets/Group 8.svg'
 import { Link, useNavigate } from "react-router-dom";
 import { Container, Form } from './styled';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { ThreeDots } from "react-loader-spinner";
 
@@ -13,11 +13,8 @@ export default function Cadastro(){
     const [senha, setSenha] = useState('')
     const [nome, setNome] = useState('')
     const [foto, setFoto] = useState('')
-    const [botao, setBotao] = useState('Cadastrar')
     const [desabilitar, setDesabilitar] = useState(false)
     
-    const [carregando, setCarregando] = useState(false)
-
     const navigate = useNavigate()
 
     const load = <ThreeDots 
@@ -30,10 +27,6 @@ export default function Cadastro(){
     wrapperClassName=""
     visible={true}
     />
-    
-    useEffect(()=>{if(carregando===true){
-        setBotao(load)
-    }}, [])
 
     function erro(e){
         setDesabilitar(false)
@@ -45,7 +38,6 @@ export default function Cadastro(){
         event.preventDefault();
 
         setDesabilitar(true)
-        setCarregando(true)
 
         const url = 'https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up'
         const requisicao = axios.post(url, {
@@ -59,8 +51,6 @@ export default function Cadastro(){
         requisicao.then(() => navigate("/"))
         requisicao.catch((e)=>{
             erro(e)
-            setCarregando(false)
-            setBotao('Cadastrar')
         })
     }
 
@@ -82,7 +72,7 @@ export default function Cadastro(){
             disabled={desabilitar && 'disabled'} data-test="user-image-input"/>
 
             <button type='submit' disabled={desabilitar && 'disabled'} data-test="signup-btn" >
-                {botao}
+                {desabilitar ? load : 'Cadastrar'}
             </button>
             
         </Form>
