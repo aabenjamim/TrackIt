@@ -2,7 +2,7 @@ import { useContext, useState, useNavigate } from "react"
 import { AuthContext } from "../../contexts/AuthContext"
 import axios from 'axios';
 import { Container, Input, Gap, Baixo, Cancelar, Salvar, Botao } from "./styled"
-import ListaHabitos from "../ListaHabitos";
+import ListaHabitos from "../ListaHabitos/ListaHabitos";
 
 export default function AdicionarHabito(){
 

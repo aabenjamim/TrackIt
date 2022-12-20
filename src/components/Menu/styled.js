@@ -1,20 +1,7 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-export default function Menu(){
-    return(
-        <Tudo>
-            <Barra>
-                <p>Hábitos</p>
-                <p>Histórico</p>
-                <Circulo>
-                    <p>Hoje</p>
-                </Circulo>
-            </Barra>
-        </Tudo>
-    )
-}
-
-const Barra = styled.div`
+export const Barra = styled.div`
     box-sizing: border-box;
     height: 70px;
     width: 100%;
@@ -37,7 +24,7 @@ const Barra = styled.div`
     }
 `
 
-const Circulo = styled.div`
+export const Circulo = styled.div`
     height: 91px;
     width: 91px;
     border-radius: 50%;
@@ -56,6 +43,7 @@ const Circulo = styled.div`
         font-size: 18px;
         line-height: 22px;
         color: #FFFFFF;
+        text-decoration: none;
     }
 
     @media (max-width: 614px){
@@ -65,6 +53,12 @@ const Circulo = styled.div`
     }
 `
 
-const Tudo = styled.div`
+export const Tudo = styled.div`
+`
+export const EstiloLink = styled(Link)`
+    text-decoration: none;
 
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
 `

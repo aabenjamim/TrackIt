@@ -1,4 +1,4 @@
-import Menu from "../components/Menu"
+import Menu from "../components/Menu/Menu"
 import Topo from "../components/Topo"
 import Texto from "../components/Texto"
 import MeusHabitos from "../components/MeusHabitos"
@@ -6,7 +6,7 @@ import AdicionarHabito from "../components/AdicioinarHabito/AdicionarHabito"
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../contexts/AuthContext"
 import axios from "axios"
-import ListaHabitos from "../components/ListaHabitos"
+import ListaHabitos from "../components/ListaHabitos/ListaHabitos"
 
 export default function Habitos(){
 
@@ -15,7 +15,7 @@ export default function Habitos(){
     function listar(h){
         
         setListagem(h)
-        
+
         if(h.data.length === 0){
             setMostra(<Texto/>)
         }
