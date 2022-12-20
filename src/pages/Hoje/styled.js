@@ -82,5 +82,5 @@ export const P = styled.p`
     margin-bottom: 0;
     font-size: 13px;
     line-height: 16px;
-    color: #666666;
+    color: ${props => props.cor};
 `

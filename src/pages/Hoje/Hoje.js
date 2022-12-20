@@ -95,7 +95,7 @@ export default function Hoje(){
                 <Dia data-test="today today-counter">
                     <h1 data-test="today">{nomeDia}, {data}/{mes}</h1>
                     {praticados.length===0 ?
-                    <P data-test="today-counter" >Ainda não há atiividades concluídas</P> :
+                    <P data-test="today-counter" >Nenhum hábito concluído ainda</P> :
                     <h2 data-test="today-counter" >
                         {porcentagem}% dos hábitos concluídos
                     </h2>}
@@ -105,10 +105,14 @@ export default function Hoje(){
                         <Texto>
                             <H1 data-test="today-habit-name">{lh.name}</H1>
                             <div>
-                                <P data-test="today-habit-sequence">
+                                <P data-test="today-habit-sequence"
+                                cor={praticados.includes(lh.id)? '#8FC549' : '#666666'}> 
                                     Sequência atual: {lh.currentSequence && lh.currentSequence} dias
                                 </P>
-                                <P data-test="today-habit-record">
+                                <P data-test="today-habit-record"
+                                cor={lh.currentSequence === lh.highestSequence?
+                                    (lh.highestSequence!==0? '#8FC549' : '#666666') 
+                                    : '#666666'}>
                                     Seu recorde: {lh.highestSequence && lh.highestSequence} dias
                                 </P>
                             </div>
