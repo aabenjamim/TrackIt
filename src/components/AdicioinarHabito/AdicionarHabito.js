@@ -89,8 +89,8 @@ export default function AdicionarHabito(){
                 <Gap>
                     {dias.map((d)=>
                     <Botao type='button' data-test="habit-day"
-                    fundo={listaDias.includes(d.id)? '#CFCFCF' : '#FFFFFF'}
-                    letra={listaDias.includes(d.id)? '#FFFFFF' : '#DBDBDB'}
+                    fundo={listaDias.includes(Number(d.id))? '#CFCFCF' : '#FFFFFF'}
+                    letra={listaDias.includes(Number(d.id))? '#FFFFFF' : '#DBDBDB'}
                     onClick={()=> marcar(d)}
                     disabled={desabilitar && 'disabled'} >
                         {d.dia}
