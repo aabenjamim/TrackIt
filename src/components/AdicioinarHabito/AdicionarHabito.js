@@ -8,13 +8,13 @@ import ListaHabitos from "../ListaHabitos/ListaHabitos";
 export default function AdicionarHabito(){
 
     const dias = [
-    {dia: 'D', id: '7'}, 
-    {dia: 'S', id: '1'}, 
-    {dia: 'T', id: '2'}, 
-    {dia: 'Q', id: '3'}, 
-    {dia: 'Q', id: '4'}, 
-    {dia: 'S', id: '5'}, 
-    {dia: 'S', id: '6'}]
+    {dia: 'D', id: 7}, 
+    {dia: 'S', id: 1}, 
+    {dia: 'T', id: 2}, 
+    {dia: 'Q', id: 3}, 
+    {dia: 'Q', id: 4}, 
+    {dia: 'S', id: 5}, 
+    {dia: 'S', id: 6}]
 
     const [desabilitar, setDesabilitar] = useState(false)
     const [habito, setHabito] = useState('')
