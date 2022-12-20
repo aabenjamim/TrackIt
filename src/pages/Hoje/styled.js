@@ -26,6 +26,13 @@ export const Dia = styled.div`
         color: #BABABA;
 
     }
+    h2{
+        font-family: 'Lexend Deca';
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+        color: #8FC549;
+    }
 `
 
 export const Habito = styled.div`
@@ -36,26 +43,12 @@ export const Habito = styled.div`
     border-radius: 5px;
     font-family: 'Lexend Deca';
     font-weight: 400;
-    color: #666666;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 13px;
     margin-bottom: 8px;
-    h1{
-        font-family: 'Lexend Deca';
-        font-weight: 400;
-        color: #666666;
-        font-size: 20px;
-        line-height: 25px;
-        margin-bottom: 7px;
-    }
-    p{
-        margin-top: 0;
-        margin-bottom: 0;
-        font-size: 13px;
-        line-height: 16px;
-    }
+
     div{
         margin-bottom: 8px;
     }
@@ -73,4 +66,21 @@ export const Check = styled.div`
         color: ${props => props.cor};
         margin: 0;
     }
+`
+
+export const H1 = styled.h1`
+    font-family: 'Lexend Deca';
+    font-weight: 400;
+    color: #666666;
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 7px;
+`
+
+export const P = styled.p`
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+    line-height: 16px;
+    color: #666666;
 `

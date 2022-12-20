@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { AuthContext } from "../../contexts/AuthContext";
 import dayjs from "dayjs";
-import {Dia, Habito, Texto, Check} from './styled'
+import {Dia, Habito, Texto, Check, H1, P} from './styled'
 
 export default function Hoje(){
 
@@ -42,7 +42,6 @@ export default function Hoje(){
         const promise = axios.get(url, config)
 
         promise.then((res)=>{
-            console.log(res.data)
             setListaHoje(res.data)
             
         })
@@ -53,8 +52,6 @@ export default function Hoje(){
         (lh.done && setPraticados([...praticados, lh.id])))
     }
 
-
-    console.log('praticados', praticados)
 
     function desmarcar(id){
         const novo = praticados.filter((p)=> p !== id)
@@ -86,8 +83,6 @@ export default function Hoje(){
             const requisicao = axios.post(url, {}, config)
 
             requisicao.then((res)=>{
-                console.log('excluido')
-                console.log(res)
                 desmarcar(id)
             }
             )
@@ -100,15 +95,18 @@ export default function Hoje(){
             <Topo/>
                 <Dia>
                     <h1>{nomeDia}, {data}/{mes}</h1>
-                    <p>Ainda não há atiividades concluídas</p>
+                    {praticados.length===0 ?
+                    <P>Ainda não há atiividades concluídas</P> :
+                    <h2>{((praticados.length/listaHoje.length).toFixed(2))*100}% 
+                    dos hábitos concluídos</h2>}
                 </Dia>
                 {listaHoje.map((lh)=>
                     <Habito>
                         <Texto>
-                            <h1>{lh.name}</h1>
+                            <H1>{lh.name}</H1>
                             <div>
-                                <p>Sequência atual: {lh.currentSequence} dias</p>
-                                <p>Seu recorde: {lh.highestSequence} dias</p>
+                                <P>Sequência atual: {lh.currentSequence && lh.currentSequence} dias</P>
+                                <P>Seu recorde: {lh.highestSequence && lh.highestSequence} dias</P>
                             </div>
                         </Texto>
                         <Check onClick={()=>concluir(lh.id)}
