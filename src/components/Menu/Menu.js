@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import {Tudo, Barra, Cont, EstiloLink} from './styled'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -12,7 +11,7 @@ export default function Menu(){
     const porcentagem = ((praticados.length/listaHoje.length).toFixed(2))*100
 
     return(
-        <Tudo>
+        <Tudo data-test="menu">
             <Barra>
                 <EstiloLink to="/habitos" data-test="habit-link">
                     <p>Hábitos</p>

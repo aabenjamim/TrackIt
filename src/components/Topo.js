@@ -7,7 +7,7 @@ export default function Topo(){
     const {image} = useContext(AuthContext)
 
     return(
-        <Barra>
+        <Barra data-test="header">
             <p>TrackIt</p>
             <img src={image} alt="foto-perfil"/>
         </Barra>
